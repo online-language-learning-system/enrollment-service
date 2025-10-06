@@ -1,15 +1,13 @@
 package com.hub.enrollment_service.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(schema = "dto", name = "enrollment_allowed_module")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnrollmentAllowedModule {
@@ -21,7 +19,7 @@ public class EnrollmentAllowedModule {
     @Column(name = "module_id")
     private Long moduleId;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "enrollment_id")
     private Enrollment enrollment;
 

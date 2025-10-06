@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.OffsetDateTime;
+import java.util.List;
+
 @Entity
 @Table(schema = "dto", name = "enrollment")
 @Getter
@@ -22,7 +25,7 @@ public class Enrollment extends AbstractAuditEntity {
     private Long id;
 
     @Column(name = "student_id")
-    private Long userId;
+    private String studentId;
 
     @Column(name = "course_id")
     private Long courseId;
@@ -33,7 +36,14 @@ public class Enrollment extends AbstractAuditEntity {
     @Column(name = "enrollment_status")
     private EnrollmentStatus enrollmentStatus;
 
+    @OneToMany(mappedBy = "enrollment")
     @Column(name = "allowed_modules")
-    private String allowedModules;
+    private List<EnrollmentAllowedModule> allowedModules;  // ["1", "2", "3"] or ["*"]
+
+    @Column(name = "trial_start_on")
+    private OffsetDateTime trialStartOn;
+
+    @Column(name = "trial_end_on")
+    private OffsetDateTime trialEndOn;
 
 }
