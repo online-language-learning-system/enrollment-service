@@ -6,10 +6,11 @@ import com.hub.enrollment_service.model.enumeration.EnrollmentType;
 import java.util.List;
 
 public record EnrollmentPostDto (
+        String studentId,
         Long courseId,
         EnrollmentType enrollmentType,
         EnrollmentStatus enrollmentStatus,
-        String allowedModules,
+        // String allowedModules,
         List<EnrollmentAllowedModulePostDto> enrollmentAllowedModulePostDtos
 ) {
 }

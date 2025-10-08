@@ -17,6 +17,7 @@ public record EnrollmentDetailGetDto(
         EnrollmentStatus enrollmentStatus,
 
         // Note to fix
+        // Suy nghĩ đến hướng sử dụng gPRC để lấy moduleByCourseId
         List<Long> allowedModuleId,
 
         OffsetDateTime remainingDay

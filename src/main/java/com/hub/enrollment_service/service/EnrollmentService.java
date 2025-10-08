@@ -25,14 +25,14 @@ public class EnrollmentService {
     private final EnrollmentAllowedModuleRepository allowedModuleRepository;
 
     @Transactional
-    public EnrollmentDetailGetDto createTrialEnrollment(EnrollmentPostDto enrollmentPostDto) {
+    public EnrollmentDetailGetDto createEnrollment(EnrollmentPostDto enrollmentPostDto) {
 
         Enrollment enrollment = new Enrollment();
-        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
-        enrollment.setStudentId(userId);
+        // String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        enrollment.setStudentId(enrollmentPostDto.studentId());
         enrollment.setCourseId(enrollmentPostDto.courseId());
         enrollment.setEnrollmentType(enrollmentPostDto.enrollmentType());
-        enrollment.setEnrollmentStatus(EnrollmentStatus.ACTIVE);
+        // enrollment.setEnrollmentStatus(EnrollmentStatus.ACTIVE);
 
         // Set day to learn
         OffsetDateTime now = OffsetDateTime.now();
@@ -51,6 +51,9 @@ public class EnrollmentService {
                 savedEnrollment.getAllowedModules().add(allowedModule);
             }
         );
+
+        // Emits event
+        // ...........
 
         return EnrollmentDetailGetDto.fromModel(enrollmentRepository.save(savedEnrollment));
     }
