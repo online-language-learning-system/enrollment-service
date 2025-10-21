@@ -37,7 +37,6 @@ public class Enrollment extends AbstractAuditEntity {
     private EnrollmentStatus enrollmentStatus;
 
     @OneToMany(mappedBy = "enrollment")
-    @Column(name = "allowed_modules")
     private List<EnrollmentAllowedModule> allowedModules;  // ["1", "2", "3"] or ["*"]
 
     @Column(name = "trial_start_on")
